@@ -12,6 +12,7 @@ import {
 import Button from './button';
 import Colors from '../values/colors';
 import Question from '../models/question';
+import Results from '../models/results';
 
 class TestView extends React.Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class TestView extends React.Component {
   answerSuccess() {
     this.setState(this.nextQuestion());
     this.refs.answerInput.clear();
+    Results.incrementTotal();
   }
 
   gradeAnswer(text) {
