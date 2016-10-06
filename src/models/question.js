@@ -28,8 +28,8 @@ class QuestionGenerator {
 
 class MultiplicationQuestionGenerator extends QuestionGenerator {
   static generate() {
-    firstNum = super.generateNumber();
-    secondNum = super.generateNumber();
+    let firstNum = super.generateNumber();
+    let secondNum = super.generateNumber();
     return {
       text: `${firstNum} x ${secondNum}`,
       answer: firstNum * secondNum,
@@ -39,14 +39,20 @@ class MultiplicationQuestionGenerator extends QuestionGenerator {
 
 class DivisionQuestionGenerator extends QuestionGenerator  {
   static generate() {
-    // TODO: implement
+    let firstNum = super.generateNumber();
+    let secondNum = super.generateNumber();
+    let multiple = firstNum * secondNum;
+    return {
+      text: `${multiple} ÷ ${secondNum}`,
+      answer: firstNum,
+    };
   }
 }
 
 class AdditionQuestionGenerator extends QuestionGenerator  {
   static generate() {
-    firstNum = super.generateNumber();
-    secondNum = super.generateNumber();
+    let firstNum = super.generateNumber();
+    let secondNum = super.generateNumber();
     return {
       text: `${firstNum} + ${secondNum}`,
       answer: firstNum + secondNum,
@@ -56,8 +62,14 @@ class AdditionQuestionGenerator extends QuestionGenerator  {
 
 class SubtractionQuestionGenerator extends QuestionGenerator  {
   static generate() {
-    firstNum = super.generateNumber();
-    secondNum = super.generateNumber();
+    let firstNum = super.generateNumber();
+    let secondNum = super.generateNumber();
+
+    if (firstNum < secondNum) {
+      let tmp = firstNum;
+      firstNum = secondNum;
+      secondNum = tmp;
+    }
 
     return {
       text: `${firstNum} - ${secondNum}`,
@@ -68,7 +80,7 @@ class SubtractionQuestionGenerator extends QuestionGenerator  {
 
 const generators = [
   MultiplicationQuestionGenerator.generate,
-  // DivisionQuestionGenerator.generate,
+  DivisionQuestionGenerator.generate,
   AdditionQuestionGenerator.generate,
   SubtractionQuestionGenerator.generate,
 ];
