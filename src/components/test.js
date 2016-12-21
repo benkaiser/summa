@@ -14,10 +14,12 @@ import Colors from '../values/colors';
 import Question from '../models/question';
 import Results from '../models/results';
 
+let lastQuestion = null;
+
 class TestView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.nextQuestion();
+    this.state = this.nextQuestion(lastQuestion);
   }
 
   render() {
@@ -50,8 +52,9 @@ class TestView extends React.Component {
     (val === this.state.answer) ? this.answerSuccess() : this.answerFail();
   }
 
-  nextQuestion() {
-    let state = Question.create();
+  nextQuestion(question) {
+    let state = question || Question.create();
+    lastQuestion = state;
     state.error = false;
     return state;
   }
